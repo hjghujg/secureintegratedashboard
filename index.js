@@ -1,12 +1,7 @@
-function bubbleSort(arr) {
-  for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = 0; j < arr.length - i - 1; j++) {
-      if (arr[j] > arr[j + 1]) {
-        let temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
-      }
-    }
-  }
-  return arr;
-}
+// Alice should have the initial balance minus tranfer amount
+if (aliceBalanceAfter[0].amount !== ALICE_INITIAL_BALANCE - TRANSFER_AMOUNT)
+  throw new Error("Alice's balance after transfer is incorrect");
+
+// Sponsor should have the initial balance minus gas
+if (sponsorBalanceAfter[0].amount >= SPONSOR_INITIAL_BALANCE)
+  throw new Error("Sponsor's balance after transfer is incorrect");
