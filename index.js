@@ -1,16 +1,14 @@
-function longestConsecutive(nums) {
-  const set = new Set(nums);
-  let longest = 0;
-  for (const num of set) {
-    if (!set.has(num - 1)) {
-      let currentNum = num;
-      let currentStreak = 1;
-      while (set.has(currentNum + 1)) {
-        currentNum++;
-        currentStreak++;
-      }
-      longest = Math.max(longest, currentStreak);
-    }
-  }
-  return longest;
-}
+const senderSignature = aptos.transaction.sign({ signer: alice, transaction });
+
+// Sponsor signs
+const sponsorSignature = aptos.transaction.signAsFeePayer({
+  signer: sponsor,
+  transaction,
+});
+
+// Submit the transaction to chain
+const committedTxn = await aptos.transaction.submit.simple({
+  transaction,
+  senderAuthenticator: senderSignature,
+  feePayerAuthenticator: sponsorSignature,
+});
