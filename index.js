@@ -1,8 +1,15 @@
-function minDepth(root) {
-  if (!root) return 0;
-  if (!root.left && !root.right) return 1;
-  let min = Infinity;
-  if (root.left) min = Math.min(min, minDepth(root.left));
-  if (root.right) min = Math.min(min, minDepth(root.right));
-  return min + 1;
+function findMaxLength(nums) {
+  const map = new Map();
+  map.set(0, -1);
+  let count = 0;
+  let maxLength = 0;
+  for (let i = 0; i < nums.length; i++) {
+    count += nums[i] === 1 ? 1 : -1;
+    if (map.has(count)) {
+      maxLength = Math.max(maxLength, i - map.get(count));
+    } else {
+      map.set(count, i);
+    }
+  }
+  return maxLength;
 }
