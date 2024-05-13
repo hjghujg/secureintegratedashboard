@@ -1,5 +1,9 @@
-function kthSmallest(matrix, k) {
-  const flatten = matrix.reduce((acc, row) => acc.concat(row), []);
-  flatten.sort((a, b) => a - b);
-  return flatten[k - 1];
+function isSymmetric(root) {
+  if (!root) return true;
+  return isMirror(root.left, root.right);
+  function isMirror(left, right) {
+    if (!left && !right) return true;
+    if (!left || !right || left.val !== right.val) return false;
+    return isMirror(left.left, right.right) && isMirror(left.right, right.left);
+  }
 }
